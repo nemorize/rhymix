@@ -22,8 +22,22 @@ class installAdminController extends install
 		$module_name = Context::get('module_name');
 		if(!$module_name) throw new Rhymix\Framework\Exceptions\InvalidRequest;
 
+		if (file_exists(\RX_BASEDIR . 'files/config/composer.php'))
+		{
+			$composerMap = require \RX_BASEDIR . 'files/config/composer.php';
+			if (isset($composerMap['modules'][$module_name]))
+			{
+				$module_path = $composerMap['modules'][$module_name];
+			}
+		}
+
+		if (!isset($module_path))
+		{
+			$module_path = './modules/'.$module_name;
+		}
+
 		$oInstallController = getController('install');
-		$oInstallController->installModule($module_name, './modules/'.$module_name);
+		$oInstallController->installModule($module_name, $module_path);
 		$oModuleController = getController('module');
 		$oModuleController->registerActionForwardRoutes($module_name);
 		$this->setMessage('success_installed');

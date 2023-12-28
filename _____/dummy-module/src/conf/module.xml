@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+	<grants>
+	</grants>
+	<actions>
+		<action name="dispDummyAdminConfig" class="Controllers\Admin" menu-name="dummy" admin-index="true" />
+		<action name="procDummyAdminInsertConfig" class="Controllers\Admin" />
+		<action name="dispDummyIndex" class="Controllers\Index" index="true" />
+	</actions>
+	<eventHandlers>
+		<eventHandler after="document.insertDocument" class="Controllers\EventHandlers" method="afterInsertDocument" />
+		<eventHandler after="document.updateDocument" class="Controllers\EventHandlers" method="afterUpdateDocument" />
+		<eventHandler after="document.deleteDocument" class="Controllers\EventHandlers" method="afterDeleteDocument" />
+	</eventHandlers>
+	<menus>
+		<menu name="dummy" type="all">
+			<title xml:lang="ko">[PoC] 더미</title>
+		</menu>
+	</menus>
+</module>

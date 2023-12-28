@@ -1,0 +1,8 @@
+<query id="insertDummy" action="insert">
+	<tables>
+		<table name="dummy" />
+	</tables>
+	<columns>
+		<column name="dummy_srl" var="dummy_srl" notnull="true" />
+	</columns>
+</query>

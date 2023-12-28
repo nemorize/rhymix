@@ -283,7 +283,21 @@ class DB
 		{
 			array_unshift($parts, 'modules');
 		}
-		$filename = \RX_BASEDIR . $parts[0] . '/' . $parts[1] . '/queries/' . $parts[2] . '.xml';
+
+		if (file_exists(\RX_BASEDIR . 'files/config/composer.php'))
+		{
+			$composerMap = require \RX_BASEDIR . 'files/config/composer.php';
+			if (isset($composerMap['modules'][$parts[1]]))
+			{
+				$filename = $composerMap['modules'][$parts[1]] . '/queries/' . $parts[2] . '.xml';
+			}
+		}
+
+		if (!isset($filename))
+		{
+			$filename = \RX_BASEDIR . $parts[0] . '/' . $parts[1] . '/queries/' . $parts[2] . '.xml';
+		}
+
 		if (!Storage::exists($filename))
 		{
 			$output = $this->setError(-1, 'Query \'' . $query_id . '\' does not exist.');

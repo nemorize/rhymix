@@ -1,0 +1,3 @@
+<table name="dummy">
+	<column name="dummy_srl" type="number" primary_key="true" />
+</table>

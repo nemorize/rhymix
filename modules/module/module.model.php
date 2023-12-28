@@ -1402,6 +1402,11 @@ class ModuleModel extends Module
 	{
 		// Get a list of downloaded and installed modules
 		$searched_list = FileHandler::readDir('./modules');
+		if (file_exists(RX_BASEDIR . 'files/config/composer.php'))
+		{
+			$composerMap = require RX_BASEDIR . 'files/config/composer.php';
+			$searched_list = [ ...$searched_list, ...array_keys($composerMap['modules']) ];
+		}
 		$searched_count = count($searched_list);
 		if(!$searched_count) return;
 		sort($searched_list);
@@ -1587,6 +1592,10 @@ class ModuleModel extends Module
 		$oDB = DB::getInstance();
 		// Get a list of downloaded and installed modules
 		$searched_list = FileHandler::readDir('./modules', '/^([a-zA-Z0-9_-]+)$/');
+		if (file_exists(RX_BASEDIR . 'files/config/composer.php')) {
+			$composerMap = require RX_BASEDIR . 'files/config/composer.php';
+			$searched_list = [ ...$searched_list, ...array_keys($composerMap['modules']) ];
+		}
 		sort($searched_list);
 
 		$searched_count = count($searched_list);

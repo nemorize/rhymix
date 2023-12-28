@@ -424,7 +424,7 @@ class ModuleHandler extends Handler
 			}
 			else
 			{
-				$class_fullname = sprintf('Rhymix\\Modules\\%s\\%s', $this->module, $class_name);
+				$class_fullname = sprintf('Rhymix\\Modules\\%s\\%s', ucfirst($this->module), $class_name);
 			}
 
 			if (class_exists($class_fullname))
@@ -555,7 +555,7 @@ class ModuleHandler extends Handler
 					}
 					else
 					{
-						$class_fullname = sprintf('Rhymix\\Modules\\%s\\%s', $forward->module, $forward->class_name);
+						$class_fullname = sprintf('Rhymix\\Modules\\%s\\%s', ucfirst($forward->module), $forward->class_name);
 					}
 
 					if (class_exists($class_fullname))
@@ -1261,6 +1261,12 @@ class ModuleHandler extends Handler
 	 * */
 	public static function getModulePath($module)
 	{
+		if (file_exists(RX_BASEDIR . 'files/config/composer.php')) {
+			$composerMap = require RX_BASEDIR . 'files/config/composer.php';
+			if (isset($composerMap['modules'][$module])) {
+				return $composerMap['modules'][$module];
+			}
+		}
 		return sprintf('./modules/%s/', $module);
 	}
 
@@ -1323,7 +1329,7 @@ class ModuleHandler extends Handler
 			// Get instance of module class
 			if (strpos($type, '\\') !== false)
 			{
-				$class_name = ($type[0] === '\\') ? $type : sprintf('Rhymix\\Modules\\%s\\%s', $module, $type);
+				$class_name = ($type[0] === '\\') ? $type : sprintf('Rhymix\\Modules\\%s\\%s', ucfirst($module), $type);
 				if (class_exists($class_name))
 				{
 					$oModule = $class_name::getInstance();

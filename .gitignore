@@ -25,3 +25,5 @@ codecept.phar
 .codeintel
 .vscode
 error_log
+
+/vendor/

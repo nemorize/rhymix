@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "type": "path",
+      "url": "./_____/dummy-module"
+    }
+  ],
+  "require": {
+    "rhymix-poc-third-party-as-as-package/dummy-module": "@dev"
+  }
+}

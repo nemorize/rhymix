@@ -1,0 +1,39 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "0ea53204ef2074226dad53b7b733e98a",
+    "packages": [
+        {
+            "name": "rhymix-poc-third-party-as-as-package/dummy-module",
+            "version": "dev-poc/third-party-as-a-package",
+            "dist": {
+                "type": "path",
+                "url": "./_____/dummy-module",
+                "reference": "d21d3799b3e674ec9bb80428ee5e22690e1991ce"
+            },
+            "type": "rhymix-module",
+            "autoload": {
+                "psr-4": {
+                    "Rhymix\\Modules\\Dummy\\": "src/"
+                }
+            },
+            "transport-options": {
+                "relative": true
+            }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "rhymix-poc-third-party-as-as-package/dummy-module": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
+}

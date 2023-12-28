@@ -74,9 +74,27 @@ class ModuleObject extends BaseObject
 		else
 		{
 			$class_filename = (new ReflectionClass($class_name))->getFileName();
-			preg_match('!^(.+[/\\\\]modules[/\\\\]([^/\\\\]+)[/\\\\])!', $class_filename, $matches);
-			$module_path = $matches[1];
-			$module = $matches[2];
+
+			// PoC라서 용납되는 코드 🤪
+			if (file_exists(RX_BASEDIR . 'files/config/composer.php'))
+			{
+				$composerMap = require RX_BASEDIR . 'files/config/composer.php';
+				foreach ($composerMap['modules'] as $key => $value)
+				{
+					if (str_starts_with($class_filename, realpath($value)))
+					{
+						$module_path = realpath($value);
+						$module = $key;
+					}
+				}
+			}
+
+			if (!isset($module))
+			{
+				preg_match('!^(.+[/\\\\]modules[/\\\\]([^/\\\\]+)[/\\\\])!', $class_filename, $matches);
+				$module_path = $matches[1];
+				$module = $matches[2];
+			}
 		}
 
 		// Create a new instance.

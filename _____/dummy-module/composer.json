@@ -1,0 +1,9 @@
+{
+  "type": "rhymix-module",
+  "name": "rhymix-poc-third-party-as-as-package/dummy-module",
+  "autoload": {
+    "psr-4": {
+      "Rhymix\\Modules\\Dummy\\": "src/"
+    }
+  }
+}
